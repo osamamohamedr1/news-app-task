@@ -14,7 +14,8 @@ class SearchRepoImpl implements SearchRepo {
   Future<Either<Failure, List<NewsModel>>> searchNews(String query) async {
     final List<NewsModel> serarchedNewsList = [];
     final response = await apiService.get(
-      endPoint: 'everything?q=flutter&apiKey=${dotenv.env['API_KEY']}',
+      endPoint: 'everything',
+      queryParams: {'q': query, 'apiKey': dotenv.env['API_KEY']},
     );
 
     try {
