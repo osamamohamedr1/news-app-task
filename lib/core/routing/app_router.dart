@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app_task/core/models/news_model/news_model.dart';
 import 'package:news_app_task/core/routing/routes.dart';
 import 'package:news_app_task/core/utils/service_locator.dart';
 import 'package:news_app_task/features/home/data/repositories/home_repo.dart';
@@ -8,6 +9,7 @@ import 'package:news_app_task/features/home/presentation/views/home_view.dart';
 import 'package:news_app_task/features/search/data/repositories/search_repo.dart';
 import 'package:news_app_task/features/search/presentation/manager/cubit/search_news_cubit.dart';
 import 'package:news_app_task/features/search/presentation/views/search_view.dart';
+import 'package:news_app_task/features/details/presentation/views/news_detail_view.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -27,6 +29,12 @@ class AppRouter {
             create: (context) => SearchNewsCubit(getIt.get<SearchRepo>()),
             child: SearchView(),
           ),
+        );
+
+      case Routes.newsDetail:
+        final newsModel = settings.arguments as NewsModel;
+        return MaterialPageRoute(
+          builder: (_) => NewsDetailView(newsModel: newsModel),
         );
 
       default:

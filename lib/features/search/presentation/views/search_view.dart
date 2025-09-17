@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app_task/core/routing/routes.dart';
+import 'package:news_app_task/features/home/presentation/views/widgets/home_news_item.dart';
 import 'package:news_app_task/features/search/presentation/manager/cubit/search_news_cubit.dart';
 import 'package:news_app_task/features/search/presentation/views/widgets/search_text_field.dart';
 
@@ -16,9 +18,17 @@ class SearchView extends StatelessWidget {
             return state.newsList.isEmpty
                 ? Center(child: Text('No News Found'))
                 : ListView.builder(
+                    itemCount: state.newsList.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(state.newsList[index].title ?? ''),
+                      final newsItem = state.newsList[index];
+                      return HomeNewsItem(
+                        newsModel: newsItem,
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            Routes.newsDetail,
+                            arguments: newsItem,
+                          );
+                        },
                       );
                     },
                   );

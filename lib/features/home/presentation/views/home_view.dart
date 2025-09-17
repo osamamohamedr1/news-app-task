@@ -31,7 +31,15 @@ class HomeView extends StatelessWidget {
               itemCount: state.news.length,
               itemBuilder: (context, index) {
                 final newsItem = state.news[index];
-                return HomeNewsItem(newsModel: newsItem);
+                return HomeNewsItem(
+                  newsModel: newsItem,
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      Routes.newsDetail,
+                      arguments: newsItem,
+                    );
+                  },
+                );
               },
             );
           } else {
