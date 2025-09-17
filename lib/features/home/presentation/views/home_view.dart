@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_task/core/routing/routes.dart';
 import 'package:news_app_task/core/utils/extensions.dart';
 import 'package:news_app_task/features/home/presentation/manager/cubit/home_cubit.dart';
+import 'package:news_app_task/features/home/presentation/views/widgets/home_news_item.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -30,10 +31,7 @@ class HomeView extends StatelessWidget {
               itemCount: state.news.length,
               itemBuilder: (context, index) {
                 final newsItem = state.news[index];
-                return ListTile(
-                  title: Text(newsItem.title ?? 'No Title'),
-                  subtitle: Text(newsItem.description ?? 'No Description'),
-                );
+                return HomeNewsItem(newsModel: newsItem);
               },
             );
           } else {
