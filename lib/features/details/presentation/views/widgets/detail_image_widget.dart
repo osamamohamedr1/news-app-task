@@ -14,7 +14,7 @@ class DetailImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: height,
       child: CachedNetworkImage(
@@ -22,9 +22,7 @@ class DetailImageWidget extends StatelessWidget {
         fit: BoxFit.cover,
         placeholder: (context, url) => Container(
           color: Colors.grey[100],
-          child: const Center(
-            child: CircularProgressIndicator(strokeWidth: 2),
-          ),
+          child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
         ),
         errorWidget: (context, url, error) => Container(
           color: Colors.grey[100],

@@ -8,10 +8,7 @@ import 'package:news_app_task/features/details/presentation/views/widgets/detail
 import 'package:news_app_task/features/home/presentation/views/widgets/news_source_date_widget.dart';
 
 class NewsDetailView extends StatelessWidget {
-  const NewsDetailView({
-    super.key,
-    required this.newsModel,
-  });
+  const NewsDetailView({super.key, required this.newsModel});
 
   final NewsModel newsModel;
 
@@ -25,10 +22,7 @@ class NewsDetailView extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
         ),
-        title: Text(
-          'Article Details',
-          style: TextStyles.font18BlackBold,
-        ),
+        title: Text('Article Details', style: TextStyles.font18BlackBold),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -38,10 +32,7 @@ class NewsDetailView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Full-size image
-            DetailImageWidget(
-              imageUrl: newsModel.urlToImage,
-              height: 250,
-            ),
+            DetailImageWidget(imageUrl: newsModel.urlToImage, height: 250),
 
             // Content section
             Padding(

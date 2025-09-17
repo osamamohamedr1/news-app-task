@@ -3,10 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:news_app_task/core/utils/text_styles.dart';
 
 class DetailActionButtonWidget extends StatelessWidget {
-  const DetailActionButtonWidget({
-    super.key,
-    required this.url,
-  });
+  const DetailActionButtonWidget({super.key, required this.url});
 
   final String? url;
 
@@ -16,7 +13,9 @@ class DetailActionButtonWidget extends StatelessWidget {
       width: double.infinity,
       height: 50,
       child: ElevatedButton.icon(
-        onPressed: url != null && url!.isNotEmpty ? () => _launchUrl(url!) : null,
+        onPressed: url != null && url!.isNotEmpty
+            ? () => _launchUrl(url!)
+            : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue[700],
           foregroundColor: Colors.white,
@@ -26,10 +25,7 @@ class DetailActionButtonWidget extends StatelessWidget {
           elevation: 2,
         ),
         icon: const Icon(Icons.open_in_browser, size: 20),
-        label: Text(
-          'Read Full Article',
-          style: TextStyles.font16WhiteBold,
-        ),
+        label: Text('Read Full Article', style: TextStyles.font16WhiteBold),
       ),
     );
   }
