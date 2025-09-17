@@ -10,7 +10,7 @@ class NewsSourceDateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: 8,
+      spacing: 4,
       children: [
         if (sourceName != null && sourceName!.isNotEmpty)
           Container(
@@ -23,12 +23,15 @@ class NewsSourceDateWidget extends StatelessWidget {
                 width: 0.2,
               ),
             ),
-            child: Text(sourceName!, style: TextStyles.font11BlueW600),
+            child: Text(
+              sourceName!,
+              style: TextStyles.font11BlueW600.copyWith(color: Colors.black),
+            ),
           ),
 
         if (publishedAt != null) ...[
+          SizedBox(width: 16),
           Icon(Icons.access_time, size: 14, color: Colors.grey[600]),
-          const SizedBox(width: 4),
           Expanded(
             child: Text(
               _formatDate(publishedAt!),

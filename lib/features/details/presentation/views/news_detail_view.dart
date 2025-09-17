@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_task/core/models/news_model/news_model.dart';
 import 'package:news_app_task/core/utils/text_styles.dart';
+import 'package:news_app_task/features/details/presentation/views/widgets/author_name_widget.dart';
 import 'package:news_app_task/features/details/presentation/views/widgets/detail_image_widget.dart';
-import 'package:news_app_task/features/details/presentation/views/widgets/detail_title_widget.dart';
-import 'package:news_app_task/features/details/presentation/views/widgets/detail_content_widget.dart';
 import 'package:news_app_task/features/details/presentation/views/widgets/detail_action_button_widget.dart';
 import 'package:news_app_task/features/home/presentation/views/widgets/news_source_date_widget.dart';
 
@@ -15,47 +14,36 @@ class NewsDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
-        ),
-        title: Text('Article Details', style: TextStyles.font18BlackBold),
-        centerTitle: true,
-      ),
+      appBar: detailsViewAppBar(context),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           spacing: 16,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Full-size image
             DetailImageWidget(imageUrl: newsModel.urlToImage, height: 250),
 
-            // Content section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 spacing: 16,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Source and Date
                   NewsSourceDateWidget(
                     sourceName: newsModel.source?.name,
                     publishedAt: newsModel.publishedAt,
                   ),
 
-                  // Full title
-                  DetailTitleWidget(title: newsModel.title),
-
-                  // Full content/description
-                  DetailContentWidget(
-                    content: newsModel.description ?? newsModel.content,
+                  Text(
+                    newsModel.title ?? 'No title available',
+                    style: TextStyles.font20BlackBold,
                   ),
 
-                  // Additional content if available
+                  Text(
+                    newsModel.description ?? 'No content available',
+                    style: TextStyles.font14GreyNormal.copyWith(height: 1.6),
+                  ),
+
                   if (newsModel.content != null &&
                       newsModel.content!.isNotEmpty &&
                       newsModel.content != newsModel.description)
@@ -69,32 +57,16 @@ class NewsDetailView extends StatelessWidget {
                             color: Colors.black87,
                           ),
                         ),
-                        DetailContentWidget(content: newsModel.content),
+                        Text(
+                          newsModel.content ?? 'No content available',
+                          style: TextStyles.font14GreyNormal,
+                        ),
                       ],
                     ),
 
-                  // Author information if available
                   if (newsModel.author != null && newsModel.author!.isNotEmpty)
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[50],
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey[200]!),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.person, size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 8),
-                          Text(
-                            'By ${newsModel.author}',
-                            style: TextStyles.font12GreyW500,
-                          ),
-                        ],
-                      ),
-                    ),
+                    AuthorNameWIdget(newsModel: newsModel),
 
-                  // Action button
                   DetailActionButtonWidget(url: newsModel.url),
                 ],
               ),
@@ -104,6 +76,20 @@ class NewsDetailView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  AppBar detailsViewAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0.5,
+      scrolledUnderElevation: 0.0,
+      leading: IconButton(
+        onPressed: () => Navigator.of(context).pop(),
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
+      ),
+      title: Text('Article Details', style: TextStyles.font18BlackBold),
+      centerTitle: true,
     );
   }
 }
