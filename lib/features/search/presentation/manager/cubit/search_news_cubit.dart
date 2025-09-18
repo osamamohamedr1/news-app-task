@@ -10,8 +10,12 @@ class SearchNewsCubit extends Cubit<SearchNewsState> {
   final SearchRepo searchRepo;
 
   Future<void> getSearchedNews({required String query}) async {
+    if (isClosed) return;
+
     emit(SearchNewsLoading());
     var result = await searchRepo.searchNews(query);
+
+    if (isClosed) return;
 
     result.fold(
       (failure) {
@@ -24,6 +28,7 @@ class SearchNewsCubit extends Cubit<SearchNewsState> {
   }
 
   void clearSearch() {
+    if (isClosed) return; // Prevent emission if cubit is closed
     emit(SearchNewsInitial());
   }
 }

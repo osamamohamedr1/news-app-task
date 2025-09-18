@@ -32,6 +32,8 @@ class _SearchTextFieldState extends State<SearchTextField> {
   void _onSearchChanged(String value) {
     _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 600), () {
+      if (!mounted) return;
+
       if (value.trim().isEmpty) {
         context.read<SearchNewsCubit>().clearSearch();
         return;
@@ -43,7 +45,9 @@ class _SearchTextFieldState extends State<SearchTextField> {
   void _clearSearch() {
     searchController.clear();
     _debounce?.cancel();
-    context.read<SearchNewsCubit>().clearSearch();
+    if (mounted) {
+      context.read<SearchNewsCubit>().clearSearch();
+    }
   }
 
   @override
@@ -79,6 +83,9 @@ class _SearchTextFieldState extends State<SearchTextField> {
       style: const TextStyle(color: Colors.white),
       onChanged: _onSearchChanged,
       onSubmitted: (value) {
+        // Check if the widget is still mounted before accessing the cubit
+        if (!mounted) return;
+
         if (value.trim().isEmpty) {
           context.read<SearchNewsCubit>().clearSearch();
           return;
