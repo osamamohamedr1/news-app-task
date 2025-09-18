@@ -13,12 +13,12 @@ void main() async {
   await dotenv.load(fileName: '.env');
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
-  runApp(NewsApp(appRouter: AppRouter()));
+  runApp(NewsApp());
 }
 
 class NewsApp extends StatelessWidget {
-  const NewsApp({super.key, required this.appRouter});
-  final AppRouter appRouter;
+  const NewsApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -27,7 +27,7 @@ class NewsApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: appRouter.generateRoute,
+        onGenerateRoute: AppRouter().generateRoute,
         initialRoute: Routes.login,
       ),
     );

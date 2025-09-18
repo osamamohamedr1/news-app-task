@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app_task/core/routing/routes.dart';
+import 'package:news_app_task/core/utils/extensions.dart';
 import 'package:news_app_task/core/utils/help_fun.dart';
 import 'package:news_app_task/core/utils/text_styles.dart';
 import 'package:news_app_task/features/login/presentation/views/widgets/custom_text_field.dart';
@@ -41,7 +42,10 @@ class _LoginViewState extends State<LoginView> {
       });
 
       if (mounted) {
-        Navigator.of(context).pushReplacementNamed(Routes.home);
+        context.pushNamedAndRemoveUntil(
+          Routes.home,
+          predicate: (route) => false,
+        );
       }
     }
   }
@@ -59,20 +63,13 @@ class _LoginViewState extends State<LoginView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 60.h),
-
+                  SizedBox(height: 75.h),
                   _buildHeader(),
-
                   SizedBox(height: 60.h),
-
                   _buildLoginForm(),
-
                   SizedBox(height: 32.h),
-
                   LoginButton(isLoading: _isLoading, onPressed: _handleLogin),
-
                   SizedBox(height: 24.h),
-
                   const LoginFooter(),
                 ],
               ),

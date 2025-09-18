@@ -1,4 +1,4 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+const String topHeadlinesEndpoint = 'top-headlines?language=en}';
+const String searchEndpoint = 'everything';
 
-final String topHeadlinesEndpoint =
-    'top-headlines?language=en&apiKey=${dotenv.env['API_KEY']}';
+const kbaseUrl = 'https://newsapi.org/v2/';

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:news_app_task/core/constants/base_url.dart';
+import 'package:news_app_task/core/constants/endpoints.dart';
 
 class ApiService {
   final Dio dio;

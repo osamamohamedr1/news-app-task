@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:news_app_task/core/constants/endpoints.dart';
 import 'package:news_app_task/core/errors/failure.dart';
 import 'package:news_app_task/core/models/news_model/news_model.dart';
@@ -14,7 +15,10 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<NewsModel>>> getLatestNews() async {
     try {
       List<NewsModel> newsList = [];
-      final response = await apiService.get(endPoint: topHeadlinesEndpoint);
+      final response = await apiService.get(
+        endPoint: topHeadlinesEndpoint,
+        queryParams: {'apiKey': dotenv.env['API_KEY']},
+      );
       for (var article in response['articles']) {
         newsList.add(NewsModel.fromJson(article));
       }
