@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
     
     <application
-        android:label="Newsify"
+        android:label="INSIGHT 360"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
