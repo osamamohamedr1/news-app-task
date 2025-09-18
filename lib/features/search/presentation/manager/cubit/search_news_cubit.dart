@@ -22,4 +22,8 @@ class SearchNewsCubit extends Cubit<SearchNewsState> {
       },
     );
   }
+
+  void clearSearch() {
+    emit(SearchNewsInitial());
+  }
 }
