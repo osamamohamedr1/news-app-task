@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:news_app_task/core/utils/text_styles.dart';
@@ -14,7 +16,7 @@ class DetailActionButtonWidget extends StatelessWidget {
       height: 50,
       child: ElevatedButton.icon(
         onPressed: url != null && url!.isNotEmpty
-            ? () => _launchUrl(url!)
+            ? () => _launchUrl(url!, context)
             : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue[700],
@@ -30,16 +32,32 @@ class DetailActionButtonWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _launchUrl(String url) async {
+  Future<void> _launchUrl(String url, BuildContext context) async {
     try {
       final uri = Uri.parse(url);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
-        throw 'Could not launch $url';
+        log('Could not launch URL: $url');
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Could not open article. Please try again.'),
+              backgroundColor: Colors.red[600],
+            ),
+          );
+        }
       }
     } catch (e) {
-      debugPrint('Error launching URL: $e');
+      log('Error launching URL: $e');
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error opening article. Please try again.'),
+            backgroundColor: Colors.red[600],
+          ),
+        );
+      }
     }
   }
 }
