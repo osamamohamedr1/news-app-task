@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:news_app_task/core/utils/text_styles.dart';
 
 class NewsImageWidget extends StatelessWidget {
   const NewsImageWidget({
@@ -32,22 +31,9 @@ class NewsImageWidget extends StatelessWidget {
               child: CircularProgressIndicator(strokeWidth: 2),
             ),
           ),
-          errorWidget: (context, url, error) => Container(
-            color: Colors.grey[100],
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.image_not_supported_outlined,
-                    size: 48,
-                    color: Colors.grey[400],
-                  ),
-                  const SizedBox(height: 8),
-                  Text('Image not available', style: TextStyles.font12BlueBold),
-                ],
-              ),
-            ),
+          errorWidget: (context, url, error) => Image.network(
+            fit: BoxFit.fill,
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGZjYKPjVrCS_uKmuUXIkYNXPA3x0q_Y-hYQ&s',
           ),
         ),
       ),
