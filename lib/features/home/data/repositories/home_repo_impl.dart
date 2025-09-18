@@ -12,12 +12,12 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl(this.apiService);
   @override
   Future<Either<Failure, List<NewsModel>>> getLatestNews() async {
-    List<NewsModel> newsList = [];
-    final response = await apiService.get(endPoint: topHeadlinesEndpoint);
-    for (var article in response['articles']) {
-      newsList.add(NewsModel.fromJson(article));
-    }
     try {
+      List<NewsModel> newsList = [];
+      final response = await apiService.get(endPoint: topHeadlinesEndpoint);
+      for (var article in response['articles']) {
+        newsList.add(NewsModel.fromJson(article));
+      }
       for (var news in response['articles']) {
         newsList.add(NewsModel.fromJson(news));
       }

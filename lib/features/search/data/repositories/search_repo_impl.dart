@@ -12,13 +12,12 @@ class SearchRepoImpl implements SearchRepo {
   SearchRepoImpl(this.apiService);
   @override
   Future<Either<Failure, List<NewsModel>>> searchNews(String query) async {
-    final List<NewsModel> serarchedNewsList = [];
-    final response = await apiService.get(
-      endPoint: 'everything',
-      queryParams: {'q': query, 'apiKey': dotenv.env['API_KEY']},
-    );
-
     try {
+      final List<NewsModel> serarchedNewsList = [];
+      final response = await apiService.get(
+        endPoint: 'everything',
+        queryParams: {'q': query, 'apiKey': dotenv.env['API_KEY']},
+      );
       for (var news in response['articles']) {
         serarchedNewsList.add(NewsModel.fromJson(news));
       }

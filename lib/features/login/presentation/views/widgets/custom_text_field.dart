@@ -37,8 +37,9 @@ class CustomTextFormField extends StatelessWidget {
           isDense: true,
           suffixIcon: suffixIcon,
           filled: true,
+          fillColor: Colors.grey.shade100,
           contentPadding: EdgeInsets.symmetric(
-            horizontal: 20.w,
+            horizontal: 16.w,
             vertical: 14.h,
           ),
 

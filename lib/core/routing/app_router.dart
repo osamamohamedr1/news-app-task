@@ -10,10 +10,14 @@ import 'package:news_app_task/features/search/data/repositories/search_repo.dart
 import 'package:news_app_task/features/search/presentation/manager/cubit/search_news_cubit.dart';
 import 'package:news_app_task/features/search/presentation/views/search_view.dart';
 import 'package:news_app_task/features/details/presentation/views/news_detail_view.dart';
+import 'package:news_app_task/features/login/presentation/views/login_view.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.login:
+        return MaterialPageRoute(builder: (_) => const LoginView());
+
       case Routes.home:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
