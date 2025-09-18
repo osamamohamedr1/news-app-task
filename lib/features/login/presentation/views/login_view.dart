@@ -52,26 +52,29 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 75.h),
-                  _buildHeader(),
-                  SizedBox(height: 60.h),
-                  _buildLoginForm(),
-                  SizedBox(height: 32.h),
-                  LoginButton(isLoading: _isLoading, onPressed: _handleLogin),
-                  SizedBox(height: 24.h),
-                  const LoginFooter(),
-                ],
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {},
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 75.h),
+                    _buildHeader(),
+                    SizedBox(height: 60.h),
+                    _buildLoginForm(),
+                    SizedBox(height: 32.h),
+                    LoginButton(isLoading: _isLoading, onPressed: _handleLogin),
+                    SizedBox(height: 24.h),
+                    const LoginFooter(),
+                  ],
+                ),
               ),
             ),
           ),

@@ -3,12 +3,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:news_app_task/core/routing/routes.dart';
 import 'package:news_app_task/core/utils/extensions.dart';
-import 'package:news_app_task/core/utils/text_styles.dart';
+import 'package:news_app_task/features/home/data/models/category_model.dart';
 import 'package:news_app_task/features/home/presentation/manager/cubit/home_cubit.dart';
-import 'package:news_app_task/features/home/presentation/views/widgets/home_news_item.dart';
+import 'package:news_app_task/features/home/presentation/views/widgets/category_list_widget.dart';
+import 'package:news_app_task/features/home/presentation/views/widgets/news_list_widget.dart';
+import 'package:news_app_task/features/home/presentation/views/widgets/sliver_error_widget.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  String selectedCategory = 'general';
+
+  void _onCategorySelected(String category) {
+    setState(() {
+      selectedCategory = category;
+    });
+    context.read<HomeCubit>().getLatestNews(category: category);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +47,32 @@ class HomeView extends StatelessWidget {
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state is HomeLoaded) {
-            return ListView.builder(
-              itemCount: state.news.length,
-              itemBuilder: (context, index) {
-                final newsItem = state.news[index];
-                return HomeNewsItem(
-                  newsModel: newsItem,
-                  onTap: () {
-                    Navigator.of(
-                      context,
-                    ).pushNamed(Routes.newsDetail, arguments: newsItem);
-                  },
-                );
-              },
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: CategoryListWidget(
+                    categories: categories,
+                    selectedCategory: selectedCategory,
+                    onCategorySelected: _onCategorySelected,
+                  ),
+                ),
+
+                NewsListWidget(newsList: state.news),
+              ],
             );
           } else if (state is HomeError) {
-            return Center(
-              child: Text(
-                state.errorMessage,
-                style: TextStyles.font18BlackBold,
-              ),
+            return SliverErrorWidget(
+              selectedCategory: selectedCategory,
+              errorMessage: state.errorMessage,
             );
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return CustomScrollView(
+              slivers: [
+                const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ],
+            );
           }
         },
       ),

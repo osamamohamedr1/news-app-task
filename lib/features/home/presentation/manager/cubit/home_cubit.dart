@@ -10,10 +10,10 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(HomeInitial());
   final HomeRepo homeRepo;
-  Future<void> getLatestNews() async {
+  Future<void> getLatestNews({String category = 'general'}) async {
     log('loading');
     emit(HomeLoading());
-    var result = await homeRepo.getLatestNews();
+    var result = await homeRepo.getLatestNews(category: category);
     result.fold(
       (failure) {
         emit(HomeError(errorMessage: failure.errorMessage));

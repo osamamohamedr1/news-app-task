@@ -6,5 +6,7 @@ import 'package:news_app_task/core/network/api_service.dart';
 abstract class HomeRepo {
   HomeRepo(ApiService apiService);
 
-  Future<Either<Failure, List<NewsModel>>> getLatestNews();
+  Future<Either<Failure, List<NewsModel>>> getLatestNews({
+    String category = 'general',
+  });
 }
