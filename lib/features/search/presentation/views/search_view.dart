@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_task/core/routing/routes.dart';
-import 'package:news_app_task/features/home/presentation/views/widgets/home_news_item.dart';
 import 'package:news_app_task/features/search/presentation/manager/cubit/search_news_cubit.dart';
 import 'package:news_app_task/features/search/presentation/views/widgets/search_text_field.dart';
+import 'package:news_app_task/features/search/presentation/views/widgets/search_news_item.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
@@ -11,7 +11,11 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: SearchTextField()),
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: SearchTextField(),
+      ),
       body: BlocBuilder<SearchNewsCubit, SearchNewsState>(
         builder: (context, state) {
           if (state is SearchNewsLoaded) {
@@ -21,7 +25,7 @@ class SearchView extends StatelessWidget {
                     itemCount: state.newsList.length,
                     itemBuilder: (context, index) {
                       final newsItem = state.newsList[index];
-                      return HomeNewsItem(
+                      return SearchNewsItem(
                         newsModel: newsItem,
                         onTap: () {
                           Navigator.of(

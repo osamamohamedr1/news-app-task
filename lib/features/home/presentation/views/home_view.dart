@@ -12,8 +12,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        elevation: 0,
         automaticallyImplyLeading: false,
-
         title: const Text('Home View'),
         actions: [
           IconButton(

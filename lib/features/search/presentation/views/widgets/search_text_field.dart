@@ -22,7 +22,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
   }
 
   void _onSearchChanged(String value) {
-    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 300), () {
       if (value.trim().isEmpty) return;
       context.read<SearchNewsCubit>().getSearchedNews(query: value);
