@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_task/core/models/news_model/news_model.dart';
 import 'package:news_app_task/core/utils/text_styles.dart';
-import 'package:news_app_task/features/home/presentation/views/widgets/news_image_widget.dart';
-import 'package:news_app_task/features/home/presentation/views/widgets/news_source_date_widget.dart';
+import 'package:news_app_task/core/widgets/news_image_widget.dart';
+import 'package:news_app_task/core/widgets/news_source_date_widget.dart';
 
 class HomeNewsItem extends StatelessWidget {
   const HomeNewsItem({super.key, required this.newsModel, this.onTap});

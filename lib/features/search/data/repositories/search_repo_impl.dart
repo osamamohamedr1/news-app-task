@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:news_app_task/core/constants/endpoints.dart';
-import 'package:news_app_task/core/errors/failure.dart';
+import 'package:news_app_task/core/utils/failure.dart';
 import 'package:news_app_task/core/models/news_model/news_model.dart';
 import 'package:news_app_task/core/network/api_service.dart';
 import 'package:news_app_task/features/search/data/repositories/search_repo.dart';

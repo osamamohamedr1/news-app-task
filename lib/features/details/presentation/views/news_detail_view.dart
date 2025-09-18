@@ -4,7 +4,7 @@ import 'package:news_app_task/core/utils/text_styles.dart';
 import 'package:news_app_task/features/details/presentation/views/widgets/author_name_widget.dart';
 import 'package:news_app_task/features/details/presentation/views/widgets/detail_image_widget.dart';
 import 'package:news_app_task/features/details/presentation/views/widgets/detail_action_button_widget.dart';
-import 'package:news_app_task/features/home/presentation/views/widgets/news_source_date_widget.dart';
+import 'package:news_app_task/core/widgets/news_source_date_widget.dart';
 
 class NewsDetailView extends StatelessWidget {
   const NewsDetailView({super.key, required this.newsModel});
