@@ -5,7 +5,13 @@ class ApiService {
   final Dio dio;
 
   ApiService(this.dio) {
-    dio.options = BaseOptions(baseUrl: kbaseUrl);
+    dio.options = BaseOptions(
+      connectTimeout: Duration(seconds: 10),
+      sendTimeout: Duration(seconds: 15),
+      receiveTimeout: Duration(seconds: 20),
+
+      baseUrl: kbaseUrl,
+    );
   }
 
   Future<dynamic> get({

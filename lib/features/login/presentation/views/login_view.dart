@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app_task/core/routing/routes.dart';
 import 'package:news_app_task/core/utils/extensions.dart';
@@ -53,7 +54,10 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvokedWithResult: (didPop, result) {},
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        SystemNavigator.pop();
+      },
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

@@ -44,37 +44,40 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      body: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          if (state is HomeLoaded) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: CategoryListWidget(
-                    categories: categories,
-                    selectedCategory: selectedCategory,
-                    onCategorySelected: _onCategorySelected,
-                  ),
-                ),
-
-                NewsListWidget(newsList: state.news),
-              ],
-            );
-          } else if (state is HomeError) {
-            return SliverErrorWidget(
-              selectedCategory: selectedCategory,
-              errorMessage: state.errorMessage,
-            );
-          } else {
-            return CustomScrollView(
-              slivers: [
-                const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()),
-                ),
-              ],
-            );
-          }
+      body: RefreshIndicator(
+        onRefresh: () {
+          return context.read<HomeCubit>().getLatestNews(
+            category: selectedCategory,
+          );
         },
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: CategoryListWidget(
+                categories: categoriesList,
+                selectedCategory: selectedCategory,
+                onCategorySelected: _onCategorySelected,
+              ),
+            ),
+
+            BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                if (state is HomeLoaded) {
+                  return NewsListWidget(newsList: state.news);
+                } else if (state is HomeError) {
+                  return SliverErrorWidget(
+                    selectedCategory: selectedCategory,
+                    errorMessage: state.errorMessage,
+                  );
+                } else {
+                  return const SliverFillRemaining(
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

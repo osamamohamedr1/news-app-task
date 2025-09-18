@@ -19,7 +19,7 @@ class CategoryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50.h,
+      height: 45.h,
       margin: EdgeInsets.symmetric(vertical: 16.h),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -28,13 +28,12 @@ class CategoryListWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final category = categories[index];
           final isSelected = selectedCategory == category.query;
-
           return Padding(
             padding: EdgeInsets.only(right: 12.w),
             child: GestureDetector(
               onTap: () => onCategorySelected(category.query),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: isSelected ? ColorsManager.blue : Colors.grey[100],
                   borderRadius: BorderRadius.circular(25),
@@ -43,17 +42,19 @@ class CategoryListWidget extends StatelessWidget {
                     width: 1,
                   ),
                 ),
-                child: Text(
-                  category.name,
-                  style: isSelected
-                      ? TextStyles.font14GreyNormal.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        )
-                      : TextStyles.font14GreyNormal.copyWith(
-                          color: Colors.grey[700],
-                          fontWeight: FontWeight.w500,
-                        ),
+                child: Center(
+                  child: Text(
+                    category.name,
+                    style: isSelected
+                        ? TextStyles.font14GreyNormal.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          )
+                        : TextStyles.font14GreyNormal.copyWith(
+                            color: Colors.grey[700],
+                            fontWeight: FontWeight.w500,
+                          ),
+                  ),
                 ),
               ),
             ),
