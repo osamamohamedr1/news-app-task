@@ -18,8 +18,6 @@ A modern Flutter news application that fetches and displays news articles from v
 - **🌐 External Browser**: Open full articles in external browser using URL launcher
 
 
-
-
 ## 🚀 Getting Started
 
 **API Key Configuration**
@@ -32,7 +30,7 @@ A modern Flutter news application that fetches and displays news articles from v
      ```
    - Create a `.env` file in the root directory:
      ```env
-     NEWS_API_KEY=your_api_key_here
+     API_KEY=your_api_key_here
      ```
    - Add `.env` to your `.gitignore` file to keep your API key secure
    - Load the environment variables in your `main.dart`:
@@ -83,7 +81,7 @@ The app follows **Clean Architecture** principles with:
 ### NewsAPI Endpoints Used
 - **Everything**: `/v2/everything` - Search articles by keywords
 - **Top Headlines**: `/v2/top-headlines` - Get breaking news headlines
-- **Sources**: Used for category-based filtering
+
 
 ## 📸 Screenshots
 
