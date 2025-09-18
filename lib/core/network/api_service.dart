@@ -6,7 +6,7 @@ class ApiService {
 
   ApiService(this.dio) {
     dio.options = BaseOptions(
-      connectTimeout: Duration(seconds: 10),
+      connectTimeout: Duration(seconds: 15),
       sendTimeout: Duration(seconds: 15),
       receiveTimeout: Duration(seconds: 20),
 

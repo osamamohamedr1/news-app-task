@@ -19,7 +19,7 @@ class CategoryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45.h,
+      height: 40.h,
       margin: EdgeInsets.symmetric(vertical: 16.h),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -29,11 +29,11 @@ class CategoryListWidget extends StatelessWidget {
           final category = categories[index];
           final isSelected = selectedCategory == category.query;
           return Padding(
-            padding: EdgeInsets.only(right: 12.w),
+            padding: EdgeInsets.only(right: 8.w),
             child: GestureDetector(
               onTap: () => onCategorySelected(category.query),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 0.h),
                 decoration: BoxDecoration(
                   color: isSelected ? ColorsManager.blue : Colors.grey[100],
                   borderRadius: BorderRadius.circular(25),

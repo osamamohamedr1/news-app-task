@@ -61,10 +61,13 @@ class _SearchTextFieldState extends State<SearchTextField> {
       decoration: InputDecoration(
         hintText: 'Search for news...',
         border: InputBorder.none,
-        hintStyle: const TextStyle(color: Colors.black54),
+        hintStyle: TextStyle(
+          color: Colors.grey.shade100,
+          fontWeight: FontWeight.w300,
+        ),
         suffixIcon: isSearchData
             ? IconButton(
-                icon: const Icon(Icons.clear, color: Colors.black54, size: 20),
+                icon: const Icon(Icons.clear, color: Colors.white, size: 20),
                 onPressed: _clearSearch,
               )
             : null,
@@ -73,7 +76,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
           vertical: 12,
         ),
       ),
-      style: const TextStyle(color: Colors.black),
+      style: const TextStyle(color: Colors.white),
       onChanged: _onSearchChanged,
       onSubmitted: (value) {
         if (value.trim().isEmpty) {

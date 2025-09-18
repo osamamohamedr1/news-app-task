@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -33,6 +35,7 @@ class HomeRepoImpl implements HomeRepo {
       }
       return Right(newsList);
     } catch (e) {
+      log(e.toString());
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
       } else {

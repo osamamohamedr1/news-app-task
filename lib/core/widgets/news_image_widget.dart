@@ -28,7 +28,7 @@ class NewsImageWidget extends StatelessWidget {
           placeholder: (context, url) => Container(
             color: Colors.grey[100],
             child: const Center(
-              child: CircularProgressIndicator(strokeWidth: 2),
+              child: CircularProgressIndicator(strokeWidth: 4),
             ),
           ),
           errorWidget: (context, url, error) => Image.network(

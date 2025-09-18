@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_task/core/routing/routes.dart';
+import 'package:news_app_task/core/utils/colors_manger.dart';
 import 'package:news_app_task/core/utils/text_styles.dart';
 import 'package:news_app_task/features/search/presentation/manager/cubit/search_news_cubit.dart';
 import 'package:news_app_task/features/search/presentation/views/widgets/search_text_field.dart';
@@ -13,6 +14,8 @@ class SearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: ColorsManager.blue,
         elevation: 0,
         scrolledUnderElevation: 0,
         title: SearchTextField(),
@@ -27,7 +30,7 @@ class SearchView extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.search_off,
-                          size: 80,
+                          size: 88,
                           color: Colors.grey[400],
                         ),
                         const SizedBox(height: 16),
@@ -65,14 +68,7 @@ class SearchView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.error_outline, size: 80, color: Colors.red[400]),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Search Failed',
-                    style: TextStyles.font20BlackBold.copyWith(
-                      color: Colors.red[600],
-                    ),
-                  ),
+                  Icon(Icons.error_outline, size: 80, color: Colors.red),
                   const SizedBox(height: 8),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
