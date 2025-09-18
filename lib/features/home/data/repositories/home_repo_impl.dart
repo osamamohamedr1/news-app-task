@@ -19,7 +19,11 @@ class HomeRepoImpl implements HomeRepo {
       List<NewsModel> newsList = [];
       final response = await apiService.get(
         endPoint: topHeadlinesEndpoint,
-        queryParams: {'apiKey': dotenv.env['API_KEY'], 'category': category},
+        queryParams: {
+          'apiKey': dotenv.env['API_KEY'],
+          'category': category,
+          'language': 'en',
+        },
       );
       for (var article in response['articles']) {
         newsList.add(NewsModel.fromJson(article));

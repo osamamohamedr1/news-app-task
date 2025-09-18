@@ -29,8 +29,8 @@ class CategoryListWidget extends StatelessWidget {
           final category = categories[index];
           final isSelected = selectedCategory == category.query;
 
-          return Container(
-            margin: EdgeInsets.only(right: 12.w),
+          return Padding(
+            padding: EdgeInsets.only(right: 12.w),
             child: GestureDetector(
               onTap: () => onCategorySelected(category.query),
               child: Container(

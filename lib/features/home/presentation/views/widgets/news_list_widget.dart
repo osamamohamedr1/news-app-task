@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_task/core/models/news_model/news_model.dart';
 import 'package:news_app_task/core/routing/routes.dart';
+import 'package:news_app_task/core/utils/extensions.dart';
 import 'package:news_app_task/features/home/presentation/views/widgets/home_news_item.dart';
 
 class NewsListWidget extends StatelessWidget {
@@ -16,9 +17,7 @@ class NewsListWidget extends StatelessWidget {
         return HomeNewsItem(
           newsModel: newsItem,
           onTap: () {
-            Navigator.of(
-              context,
-            ).pushNamed(Routes.newsDetail, arguments: newsItem);
+            context.pushNamed(Routes.newsDetail, arguments: newsItem);
           },
         );
       }, childCount: newsList.length),
