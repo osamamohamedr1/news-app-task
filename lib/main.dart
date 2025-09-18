@@ -28,7 +28,7 @@ class NewsApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter().generateRoute,
-        initialRoute: Routes.home,
+        initialRoute: Routes.login,
       ),
     );
   }

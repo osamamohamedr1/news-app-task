@@ -28,7 +28,7 @@ class SearchNewsCubit extends Cubit<SearchNewsState> {
   }
 
   void clearSearch() {
-    if (isClosed) return; // Prevent emission if cubit is closed
+    if (isClosed) return;
     emit(SearchNewsInitial());
   }
 }
