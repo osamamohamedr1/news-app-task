@@ -40,17 +40,10 @@ class ServerFailure extends Failure {
         return ServerFailure(errorMessage: 'Something went wrong.\nTry again.');
     }
   }
-  static String getErrorMessage(dynamic response) {
-    if (response is Map) {
-      return response['message'];
-    } else {
-      return 'Something went wrong.';
-    }
-  }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(errorMessage: getErrorMessage(response));
+      return ServerFailure(errorMessage: response['message']);
     } else if (statusCode == 404) {
       return ServerFailure(errorMessage: 'Request not found.');
     } else if (statusCode == 500) {

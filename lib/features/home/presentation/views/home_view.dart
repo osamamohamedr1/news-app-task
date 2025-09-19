@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:news_app_task/core/routing/routes.dart';
 import 'package:news_app_task/core/utils/extensions.dart';
-import 'package:news_app_task/core/utils/text_styles.dart';
+import 'package:news_app_task/core/widgets/loading_news.dart';
 import 'package:news_app_task/features/home/data/models/category_model.dart';
 import 'package:news_app_task/features/home/presentation/manager/cubit/home_cubit.dart';
 import 'package:news_app_task/features/home/presentation/views/widgets/category_list_widget.dart';
@@ -72,26 +72,7 @@ class _HomeViewState extends State<HomeView> {
                   );
                 } else {
                   return SliverFillRemaining(
-                    child: Center(
-                      child: Column(
-                        spacing: 20,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 45,
-                            height: 45,
-                            child: CircularProgressIndicator(strokeWidth: 4),
-                          ),
-                          Text(
-                            'Loading news...',
-                            style: TextStyles.font16WhiteBold.copyWith(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: Center(child: LoadingNews()),
                   );
                 }
               },

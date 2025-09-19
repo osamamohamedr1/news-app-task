@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_task/core/routing/routes.dart';
 import 'package:news_app_task/core/utils/colors_manger.dart';
 import 'package:news_app_task/core/utils/text_styles.dart';
+import 'package:news_app_task/core/widgets/loading_news.dart';
 import 'package:news_app_task/features/search/presentation/manager/cubit/search_news_cubit.dart';
+import 'package:news_app_task/features/search/presentation/views/widgets/empty_news.dart';
 import 'package:news_app_task/features/search/presentation/views/widgets/search_text_field.dart';
 import 'package:news_app_task/features/search/presentation/views/widgets/search_news_item.dart';
 
@@ -24,31 +26,7 @@ class SearchView extends StatelessWidget {
         builder: (context, state) {
           if (state is SearchNewsLoaded) {
             return state.newsList.isEmpty
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.search_off,
-                          size: 88,
-                          color: Colors.grey[400],
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'No News Found',
-                          style: TextStyles.font20BlackBold.copyWith(
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Try searching with different keywords',
-                          style: TextStyles.font14GreyNormal,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  )
+                ? EmptyNews()
                 : ListView.builder(
                     itemCount: state.newsList.length,
                     itemBuilder: (context, index) {
@@ -82,7 +60,7 @@ class SearchView extends StatelessWidget {
               ),
             );
           } else if (state is SearchNewsLoading) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: LoadingNews());
           } else {
             return Center(
               child: Column(
