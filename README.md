@@ -84,6 +84,9 @@ The app follows **Clean Architecture** principles with:
 
 
 ## 📸 Screenshots
+![new2](https://github.com/user-attachments/assets/df915731-64e7-4c45-8d1a-75359fcd7e02)
+![new4](https://github.com/user-attachments/assets/7983d625-29af-496e-a453-a7dcab934347)
+![new1](https://github.com/user-attachments/assets/e7eaf033-d1cf-4d95-ba8e-91c03e1939b3)
 
 
 ## 📞 Contact
